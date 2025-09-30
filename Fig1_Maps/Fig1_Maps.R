@@ -360,7 +360,7 @@ tmap_save(infs.5, filename = paste0("20250922_Export/Fig1_Heatmap_CaseRate/Fig1f
 
 
 
-# ----- 11. Manually assign deciles -----
+# ----- 11. Manually assign deciles (hospitalisations -----
 plot.1  <- plot.1  %>% mutate(hosp_rate = ifelse(hosp_rate == 0, NA, hosp_rate),
                               hosp_rate = ifelse(hosp_rate < 10, NA, hosp_rate))
 plot.2a <- plot.2a %>% mutate(hosp_rate = ifelse(hosp_rate == 0, NA, hosp_rate),
@@ -375,7 +375,7 @@ plot.5  <- plot.5  %>% mutate(hosp_rate = ifelse(hosp_rate == 0, NA, hosp_rate),
                               hosp_rate = ifelse(hosp_rate < 10, NA, hosp_rate))
 
 
-# ----- 11. Plot Hospitalisations for each period separately -----
+# ----- 12. Plot Hospitalisations for each period separately -----
 pal <- c("white", brewer.pal(10, "YlOrBr"))
 
 # Hospitalisations
@@ -624,7 +624,7 @@ hosp.5 <- tm_shape(plot.5) +
             
             frame = FALSE)
 
-# ----- 10. Save plots -----
+# ----- 13. Save plots -----
 tmap_save(hosp.1, filename = paste0("20250922_Export/Fig1_Heatmap_CaseRate/Fig1g_heatmap_hosp.jpeg"), 
           width = 15, height = 6.5, units = "in", dpi = 450)
 
@@ -643,138 +643,4 @@ tmap_save(hosp.4,filename = paste0("20250922_Export/Fig1_Heatmap_CaseRate/Fig1k_
 tmap_save(hosp.5, filename = paste0("20250922_Export/Fig1_Heatmap_CaseRate/Fig1l_heatmap_hosp.jpeg"), 
           width = 15, height = 6.5, units = "in", dpi = 450)
 
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Define breaks and labels for infections
-cstm_brks.infs <- list("Period 1 (1 Jan 2020 - 29 Jun 2020); Wildtype"  = c(0, 20,  40,   60,   80,    25000),
-                       "Period 2a (29 Jun 2020 - 30 Nov 2020); Wildtype" = c(0, 2000, 2750, 3500, 4250, 25000),
-                       "Period 2b (30 Nov 2020 - 1 Feb 2021); Wildtype" = c(0, 2500, 3250, 4000, 4750, 25000),
-                       "Period 3 (1 Feb 2021 - 5 Jul 2021); Alpha"  = c(0, 3250, 4000, 4750, 5500, 25000),
-                       "Period 4 (5 Jul 2021 - 4 Oct 2021); Delta"  = c(0, 1250, 1500, 1750, 2000, 25000),
-                       "Period 5 (4 Oct 2021 - 31 Dec 2021); Delta"  = c(0, 6000, 7000, 8000, 9000, 25000))
-
-cstm_labs.infs = list("Period 1 (1 Jan 2020 - 29 Jun 2020); Wildtype"  = c("<20",   "20-40",     "40-60",     "0-80",      "80+"  ),
-                      "Period 2a (29 Jun 2020 - 30 Nov 2020); Wildtype" = c("<2000", "2000-2750", "2750-3500", "3500-4250", "4250+"),
-                      "Period 2b (30 Nov 2020 - 1 Feb 2021); Wildtype" = c("<2500", "2500-3250", "3250-4000", "4000-4750", "4750+"),
-                      "Period 3 (1 Feb 2021 - 5 Jul 2021); Alpha"  = c("<3250", "3250-4000", "4000-4750", "4750-5500", "5500+"),
-                      "Period 4 (5 Jul 2021 - 4 Oct 2021); Delta"  = c("<1250", "1250-1500", "1500-1750", "1750-2000", "2000+"),
-                      "Period 5 (4 Oct 2021 - 31 Dec 2021); Delta"  = c("<6000", "6000-7000", "7000-8000", "8000-9000", "9000+"))
-
-# Define breaks and labels for hospitalisations
-cstm_brks.hosp <- list("Period 1 (1 Jan 2020 - 29 Jun 2020); Wildtype"  = c(0, 10, 55, 100, 145, 25000),
-                       "Period 2a (29 Jun 2020 - 30 Nov 2020); Wildtype" = c(0, 10, 50, 90, 130, 25000),
-                       "Period 2b (30 Nov 2020 - 1 Feb 2021); Wildtype" = c(0, 10, 50, 90, 130, 25000),
-                       "Period 3 (1 Feb 2021 - 5 Jul 2021); Alpha"  = c(0, 40, 85, 130, 175, 25000),
-                       "Period 4 (5 Jul 2021 - 4 Oct 2021); Delta"  = c(0, 20, 40, 60, 80, 25000),
-                       "Period 5 (4 Oct 2021 - 31 Dec 2021); Delta"  = c(0, 10, 50, 90, 130, 25000))
-
-cstm_labs.hosp = list("Period 1 (1 Jan 2020 - 29 Jun 2020); Wildtype"  = c("<10", "10-55", "55-100", "100-145", "145+"  ),
-                      "Period 2a (29 Jun 2020 - 30 Nov 2020); Wildtype" = c("<10", "10-50", "50-90",  "90-130",  "130+"),
-                      "Period 2b (30 Nov 2020 - 1 Feb 2021); Wildtype" = c("<10", "10-50", "50-90",  "90-130",  "130+"),
-                      "Period 3 (1 Feb 2021 - 5 Jul 2021); Alpha"  = c("<40", "40-85", "85-130", "130-175", "175+"),
-                      "Period 4 (5 Jul 2021 - 4 Oct 2021); Delta"  = c("<20", "20-40", "40-60",  "60-80",   "80+"),
-                      "Period 5 (4 Oct 2021 - 31 Dec 2021); Delta"  = c("<10", "10-50", "50-90",  "90-130",  "130+"))
-
-
-# ----- 7. Define plots -----
-# Infections
-infs.map <- plot.f %>%
-  group_split(period) %>%
-  lapply(function(df) {
-   
-    period <- unique(df$period)
-    
-    tm_shape(df) +
-      tm_borders(alpha = 0.25) +
-      tm_fill(col = "case_rate",
-              palette = "plasma",
-              breaks = cstm_brks.infs[[period]],
-              labels = cstm_labs.infs[[period]],
-              style = "fixed",
-              title = "Infections (/100.000)", 
-              showNA = FALSE) +
-      tm_layout(main.title = period, 
-                main.title.size = 0.75, 
-                main.title.fontface = "bold",
-                legend.title.fontface = "bold",
-                legend.title.size     = .8,
-                legend.frame          = FALSE,
-                legend.position       = c("left", "top"))
-    })
-
-
-
-
-
-
-
-# Hospitalisations
-hosp.map <- plot.f %>%
-  group_split(period) %>%
-  lapply(function(df) {
-    
-    period <- unique(df$period)
-    
-    tm_shape(df) +
-      tm_borders(alpha = 0.25) +
-      tm_fill(col = "hosp_rate",
-              palette = "plasma",
-              breaks = cstm_brks.hosp[[period]],
-              labels = cstm_labs.hosp[[period]],
-              style = "fixed",
-              title = "Hospitalisations (/100.000)", 
-              showNA = FALSE) +
-      tm_layout(main.title = period, 
-                main.title.size = 0.75, 
-                main.title.fontface = "bold",
-                legend.title.fontface = "bold",
-                legend.title.size     = .8,
-                legend.frame          = FALSE,
-                legend.position       = c("left", "top"))
-  })
-
-
-# ----- 8. Plot objects -----
-# Infections
-tmap.infs <- tmap_arrange(infs.map, ncol = 3)
-# Hospitalisations
-tmap.hosp <- tmap_arrange(hosp.map, ncol = 3)
-
-# ----- 9. Save objects -----
-# Infections
-tmap_save(tmap.infs, 
-          filename = paste0("Fig1a_heatmap_infs_V5.jpeg"), 
-          width    = 15, height   = 6.5, units    = "in", dpi      = 600)
-# Hospitalisations
-tmap_save(tmap.hosp, 
-          filename = paste0("Fig1b_heatmap_hosp_V5.jpeg"), 
-          width    = 15, height   = 6.5, units    = "in", dpi      = 600)
 
