@@ -1,0 +1,1 @@
+This repository contains the code to reproduce results and figures contained in the manuscript "Socioeconomic and demographic inequality in COVID-19 infections and hospitalisations in the Netherlands: a spatiotemporal analysis". 
